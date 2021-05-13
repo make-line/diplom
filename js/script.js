@@ -19,27 +19,18 @@
 		plugins = {
 			bootstrapModalDialog:    $( '.modal' ),
 			bootstrapTabs:           $( ".tabs-custom" ),
-			rdNavbar:                $( ".rd-navbar" ),
 			materialParallax:        $( ".parallax-container" ),
-			rdMailForm:              $( ".rd-mailform" ),
-			rdInputLabel:            $( ".form-label" ),
 			regula:                  $( "[data-constraints]" ),
 			wow:                     $( ".wow" ),
 			owl:                     $( ".owl-carousel" ),
 			swiper:                  $( ".swiper-slider" ),
 			isotope:                 $( ".isotope" ),
-			radio:                   $( "input[type='radio']" ),
-			checkbox:                $( "input[type='checkbox']" ),
 			customToggle:            $( "[data-custom-toggle]" ),
 			counter:                 $( ".counter" ),
-			preloader:               $( ".preloader" ),
-			captcha:                 $( '.recaptcha' ),
 			scroller:                $( ".scroll-wrap" ),
 			lightGallery:            $( '[data-lightgallery="group"]' ),
 			lightGalleryItem:        $( '[data-lightgallery="item"]' ),
 			lightDynamicGalleryItem: $( '[data-lightgallery="dynamic"]' ),
-			copyrightYear:           $( ".copyright-year" ),
-			maps:                    $( ".google-map-container" ),
 			particlesJs:             $( '#particles-js' )
 		};
 
@@ -75,55 +66,6 @@
 	// Initialize scripts that require a finished document
 	$( function () {
 		isNoviBuilder = window.xMode;
-
-		/**
-		 * @desc Google map function for getting latitude and longitude
-		 */
-		function getLatLngObject ( str, marker, map, callback ) {
-			var coordinates = {};
-			try {
-				coordinates = JSON.parse( str );
-				callback( new google.maps.LatLng(
-					coordinates.lat,
-					coordinates.lng
-				), marker, map )
-			} catch ( e ) {
-				map.geocoder.geocode( { 'address': str }, function ( results, status ) {
-					if ( status === google.maps.GeocoderStatus.OK ) {
-						var latitude = results[ 0 ].geometry.location.lat();
-						var longitude = results[ 0 ].geometry.location.lng();
-
-						callback( new google.maps.LatLng(
-							parseFloat( latitude ),
-							parseFloat( longitude )
-						), marker, map )
-					}
-				} )
-			}
-		}
-		// Page loader & Page transition
-		if ( plugins.preloader.length && !isNoviBuilder ) {
-			pageTransition( {
-				target:            document.querySelector( '.page' ),
-				delay:             100,
-				duration:          500,
-				classIn:           'fadeIn',
-				classOut:          'fadeOut',
-				classActive:       'animated',
-				conditions:        function ( event, link ) {
-					return !/(\#|callto:|tel:|mailto:|:\/\/)/.test( link ) && !event.currentTarget.hasAttribute( 'data-lightgallery' );
-				},
-				onTransitionStart: function ( options ) {
-					setTimeout( function () {
-						plugins.preloader.removeClass( 'loaded' );
-					}, options.duration * .75 );
-				},
-				onReady:           function () {
-					plugins.preloader.addClass( 'loaded' );
-					windowReady = true;
-				}
-			} );
-		}
 
 		/**
 		 * @desc Calculate the height of swiper slider basing on data attr
@@ -380,40 +322,6 @@
 		}
 
 		/**
-		 * @desc Check if all elements pass validation
-		 * @param {object} elements - object of items for validation
-		 * @param {object} captcha - captcha object for validation
-		 * @return {boolean}
-		 */
-		function isValidated(elements, captcha) {
-			var results, errors = 0;
-
-			if (elements.length) {
-				for (var j = 0; j < elements.length; j++) {
-
-					var $input = $(elements[j]);
-					if ((results = $input.regula('validate')).length) {
-						for (k = 0; k < results.length; k++) {
-							errors++;
-							$input.siblings(".form-validation").text(results[k].message).parent().addClass("has-error");
-						}
-					} else {
-						$input.siblings(".form-validation").text("").parent().removeClass("has-error")
-					}
-				}
-
-				if (captcha) {
-					if (captcha.length) {
-						return validateReCaptcha(captcha) && errors === 0
-					}
-				}
-
-				return errors === 0;
-			}
-			return true;
-		}
-
-		/**
 		 * @desc Initialize the gallery with set of images
 		 * @param {object} itemsToInit - jQuery object
 		 * @param {string} [addClass] - additional gallery class
@@ -485,14 +393,6 @@
 			$html.addClass( "mac-os" );
 		}
 
-		// Adds some loosing functionality to IE browsers (IE Polyfills)
-		if (isIE) {
-			if (isIE === 12) $html.addClass("ie-edge");
-			if (isIE === 11) $html.addClass("ie-11");
-			if (isIE < 10) $html.addClass("lt-ie-10");
-			if (isIE < 11) $html.addClass("ie-10");
-		}
-
 		// Bootstrap tabs
 		if ( plugins.bootstrapTabs.length ) {
 			for ( var i = 0; i < plugins.bootstrapTabs.length; i++ ) {
@@ -510,18 +410,6 @@
 					}, bootstrapTabsItem ) );
 				}
 			}
-		}
-
-		// Copyright Year (Evaluates correct copyright year)
-		if ( plugins.copyrightYear.length ) {
-			plugins.copyrightYear.text( initialDate.getFullYear() );
-		}
-
-		// Page loader
-		if ( plugins.preloader.length ) {
-			loaderTimeoutId = setTimeout( function () {
-				if ( !windowReady && !isNoviBuilder ) plugins.preloader.removeClass( 'loaded' );
-			}, 2000 );
 		}
 
 		// lightGallery
@@ -565,80 +453,6 @@
 				plugins.owl[ i ].owl = c;
 
 				initOwlCarousel( c );
-			}
-		}
-
-		// RD Navbar
-		if ( plugins.rdNavbar.length ) {
-			var aliaces, i, j, len, value, values, responsiveNavbar;
-
-			aliaces = [ "-", "-sm-", "-md-", "-lg-", "-xl-", "-xxl-" ];
-			values = [ 0, 576, 768, 992, 1200, 1600 ];
-			responsiveNavbar = {};
-
-			for ( i = j = 0, len = values.length; j < len; i = ++j ) {
-				value = values[ i ];
-				if ( !responsiveNavbar[ values[ i ] ] ) {
-					responsiveNavbar[ values[ i ] ] = {};
-				}
-				if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'layout' ) ) {
-					responsiveNavbar[ values[ i ] ].layout = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'layout' );
-				}
-				if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'device-layout' ) ) {
-					responsiveNavbar[ values[ i ] ][ 'deviceLayout' ] = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'device-layout' );
-				}
-				if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'hover-on' ) ) {
-					responsiveNavbar[ values[ i ] ][ 'focusOnHover' ] = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'hover-on' ) === 'true';
-				}
-				if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'auto-height' ) ) {
-					responsiveNavbar[ values[ i ] ][ 'autoHeight' ] = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'auto-height' ) === 'true';
-				}
-
-				if ( isNoviBuilder ) {
-					responsiveNavbar[ values[ i ] ][ 'stickUp' ] = false;
-				} else if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'stick-up' ) ) {
-					responsiveNavbar[ values[ i ] ][ 'stickUp' ] = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'stick-up' ) === 'true';
-				}
-
-				if ( plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'stick-up-offset' ) ) {
-					responsiveNavbar[ values[ i ] ][ 'stickUpOffset' ] = plugins.rdNavbar.attr( 'data' + aliaces[ i ] + 'stick-up-offset' );
-				}
-			}
-
-
-			plugins.rdNavbar.RDNavbar( {
-				anchorNav:    !isNoviBuilder,
-				stickUpClone: (plugins.rdNavbar.attr( "data-stick-up-clone" ) && !isNoviBuilder) ? plugins.rdNavbar.attr( "data-stick-up-clone" ) === 'true' : false,
-				responsive:   responsiveNavbar,
-				callbacks:    {
-					onStuck:        function () {
-						var navbarSearch = this.$element.find( '.rd-search input' );
-
-						if ( navbarSearch ) {
-							navbarSearch.val( '' ).trigger( 'propertychange' );
-						}
-					},
-					onDropdownOver: function () {
-						return !isNoviBuilder;
-					},
-					onUnstuck:      function () {
-						if ( this.$clone === null )
-							return;
-
-						var navbarSearch = this.$clone.find( '.rd-search input' );
-
-						if ( navbarSearch ) {
-							navbarSearch.val( '' ).trigger( 'propertychange' );
-							navbarSearch.trigger( 'blur' );
-						}
-
-					}
-				}
-			} );
-
-
-			if ( plugins.rdNavbar.attr( "data-body-class" ) ) {
-				document.body.className += ' ' + plugins.rdNavbar.attr( "data-body-class" );
 			}
 		}
 
@@ -814,197 +628,6 @@
 		// WOW
 		if ( $html.hasClass( "wow-animation" ) && plugins.wow.length && !isNoviBuilder && isDesktop ) {
 			new WOW().init();
-		}
-
-		// RD Input Label
-		if (plugins.rdInputLabel.length) {
-			plugins.rdInputLabel.RDInputLabel();
-		}
-
-		// Regula
-		if (plugins.regula.length) {
-			attachFormValidator(plugins.regula);
-		}
-
-		// RD Mailform
-		if (plugins.rdMailForm.length) {
-			var i, j, k,
-				msg = {
-					'MF000': 'Successfully sent!',
-					'MF001': 'Recipients are not set!',
-					'MF002': 'Form will not work locally!',
-					'MF003': 'Please, define email field in your form!',
-					'MF004': 'Please, define type of your form!',
-					'MF254': 'Something went wrong with PHPMailer!',
-					'MF255': 'Aw, snap! Something went wrong.'
-				};
-
-			for (i = 0; i < plugins.rdMailForm.length; i++) {
-				var $form = $(plugins.rdMailForm[i]),
-					formHasCaptcha = false;
-
-				$form.attr('novalidate', 'novalidate').ajaxForm({
-					data: {
-						"form-type": $form.attr("data-form-type") || "contact",
-						"counter": i
-					},
-					beforeSubmit: function (arr, $form, options) {
-						if (isNoviBuilder)
-							return;
-
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-							inputs = form.find("[data-constraints]"),
-							output = $("#" + form.attr("data-form-output")),
-							captcha = form.find('.recaptcha'),
-							captchaFlag = true;
-
-						output.removeClass("active error success");
-
-						if (isValidated(inputs, captcha)) {
-
-							// veify reCaptcha
-							if (captcha.length) {
-								var captchaToken = captcha.find('.g-recaptcha-response').val(),
-									captchaMsg = {
-										'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-										'CPT002': 'Something wrong with google reCaptcha'
-									};
-
-								formHasCaptcha = true;
-
-								$.ajax({
-									method: "POST",
-									url: "bat/reCaptcha.php",
-									data: {'g-recaptcha-response': captchaToken},
-									async: false
-								})
-									.done(function (responceCode) {
-										if (responceCode !== 'CPT000') {
-											if (output.hasClass("snackbars")) {
-												output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
-
-												setTimeout(function () {
-													output.removeClass("active");
-												}, 3500);
-
-												captchaFlag = false;
-											} else {
-												output.html(captchaMsg[responceCode]);
-											}
-
-											output.addClass("active");
-										}
-									});
-							}
-
-							if (!captchaFlag) {
-								return false;
-							}
-
-							form.addClass('form-in-process');
-
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
-								output.addClass("active");
-							}
-						} else {
-							return false;
-						}
-					},
-					error: function (result) {
-						if (isNoviBuilder)
-							return;
-
-						var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
-							form = $(plugins.rdMailForm[this.extraData.counter]);
-
-						output.text(msg[result]);
-						form.removeClass('form-in-process');
-
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
-					},
-					success: function (result) {
-						if (isNoviBuilder)
-							return;
-
-						var form = $(plugins.rdMailForm[this.extraData.counter]),
-							output = $("#" + form.attr("data-form-output")),
-							select = form.find('select');
-
-						form
-							.addClass('success')
-							.removeClass('form-in-process');
-
-						if (formHasCaptcha) {
-							grecaptcha.reset();
-						}
-
-						result = result.length === 5 ? result : 'MF255';
-						output.text(msg[result]);
-
-						if (result === "MF000") {
-							if (output.hasClass("snackbars")) {
-								output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active success");
-							}
-						} else {
-							if (output.hasClass("snackbars")) {
-								output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
-							} else {
-								output.addClass("active error");
-							}
-						}
-
-						form.clearForm();
-
-						if (select.length) {
-							select.select2("val", "");
-						}
-
-						form.find('input, textarea').trigger('blur');
-
-						setTimeout(function () {
-							output.removeClass("active error success");
-							form.removeClass('success');
-						}, 3500);
-					}
-				});
-			}
-		}
-
-		// Custom Toggles
-		if ( plugins.customToggle.length ) {
-			for ( var i = 0; i < plugins.customToggle.length; i++ ) {
-				var $this = $( plugins.customToggle[ i ] );
-
-				$this.on( 'click', $.proxy( function ( event ) {
-					event.preventDefault();
-
-					var $ctx = $( this );
-					$( $ctx.attr( 'data-custom-toggle' ) ).add( this ).toggleClass( 'active' );
-				}, $this ) );
-
-				if ( $this.attr( "data-custom-toggle-hide-on-blur" ) === "true" ) {
-					$body.on( "click", $this, function ( e ) {
-						if ( e.target !== e.data[ 0 ]
-							&& $( e.data.attr( 'data-custom-toggle' ) ).find( $( e.target ) ).length
-							&& e.data.find( $( e.target ) ).length === 0 ) {
-							$( e.data.attr( 'data-custom-toggle' ) ).add( e.data[ 0 ] ).removeClass( 'active' );
-						}
-					} )
-				}
-
-				if ( $this.attr( "data-custom-toggle-disable-on-blur" ) === "true" ) {
-					$body.on( "click", $this, function ( e ) {
-						if ( e.target !== e.data[ 0 ] && $( e.data.attr( 'data-custom-toggle' ) ).find( $( e.target ) ).length === 0 && e.data.find( $( e.target ) ).length === 0 ) {
-							$( e.data.attr( 'data-custom-toggle' ) ).add( e.data[ 0 ] ).removeClass( 'active' );
-						}
-					} )
-				}
-			}
 		}
 
 		// jQuery Count To
