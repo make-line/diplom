@@ -58,7 +58,7 @@
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.login}"></td>
-                <td th:text="${user.testResult.result}"></td>
+                <td th:if="${user.testResult != null}" th:text="${user.testResult.result}"></td>
 <!--                <td>-->
 <!--&lt;!&ndash;                    <form action="${pageContext.request.contextPath}/admin" method="post">&ndash;&gt;-->
 <!--&lt;!&ndash;                        <input type="hidden" name="userId" value="${user.id}"/>&ndash;&gt;-->
@@ -84,13 +84,13 @@
         <div th:each="testResult : ${testResult}">
 
             <tr>
-                <td th:text="${testResult.id}"></td>
-                <td th:text="${testResult.q1}"></td>
-                <td th:text="${testResult.q2}"></td>
-                <td th:text="${testResult.q3}"></td>
-                <td th:text="${testResult.q4}"></td>
-                <td th:text="${testResult.q5}"></td>
-                <td th:text="${testResult.result}"></td>
+                <td th:if="${testResult.id != null && testResult != null}" th:text="${testResult.id}"></td>
+                <td th:if="${testResult.q1 != null  && testResult != null}" th:text="${testResult.q1}"></td>
+                <td th:if="${testResult.q2 != null  && testResult != null}" th:text="${testResult.q2}"></td>
+                <td th:if="${testResult.q3 != null  && testResult != null}" th:text="${testResult.q3}"></td>
+                <td th:if="${testResult.q4 != null  && testResult != null}" th:text="${testResult.q4}"></td>
+                <td th:if="${testResult.q5 != null  && testResult != null}" th:text="${testResult.q5}"></td>
+                <td th:if="${testResult.result != null  && testResult != null}" th:text="${testResult.result}"></td>
             </tr>
         </div>
     </table>
