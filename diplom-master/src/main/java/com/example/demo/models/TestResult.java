@@ -3,15 +3,17 @@ package com.example.demo.models;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "test")
 @Getter
 @Setter
 @ToString
-public class TestResult {
+public class TestResult implements Serializable {
     @Id
     @Column(name = "user_id")
     Long id;
@@ -26,7 +28,7 @@ public class TestResult {
     @Column(name="q5")
     int q5;
     @Column(name="result")
-    int result;
+    int result=-1;
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")

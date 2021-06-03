@@ -34,7 +34,9 @@ public class UserController {
 
     @GetMapping
     public String registration() {
-        return "registration";
+        if (userService.findUser(userService.getCurrentUsername())==null)
+            return "registration";
+        return "redirect:/test";
     }
 
     @PostMapping()

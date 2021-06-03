@@ -34,8 +34,6 @@
 
 <div class="topnav">
     <a class="active" href="/home">Home</a>
-    <a href="/pay" onclick="return confirm('Оплатить?')">Оплата следующего месяца</a>
-    <a href="/change" >Сменить план</a>
     <a href="/logout">Выйти из аккаунта</a>
 </div>
 <div  class="wrap">
@@ -43,16 +41,30 @@
     <span  class="company_description" th:text="${result}"></span>
     <span  class="company_description2" th:text="${name}">
 				</span>
-    <hr />
-    <div  class="main_info">
-        <span  class="info">
-					<span  class="sized">
-					</span>
-					<strong><i th:text="${result}"></i></strong>
-					<br>
-                    <br>
-				</span>
-    </div>
+    <h2>Ваши результаты</h2>
+    <table border="1" bordercolor=black>
+        <thead>
+        <th>Вопрос 1</th>
+        <th>Вопрос 2</th>
+        <th>Вопрос 3</th>
+        <th>Вопрос 4</th>
+        <th>Вопрос 5</th>
+        <th>Результат</th>
+        </thead>
+        <div>
+
+            <tr>
+                <td th:text="${testResult.q1}"></td>
+                <td th:text="${testResult.q2}"></td>
+                <td th:text="${testResult.q3}"></td>
+                <td th:text="${testResult.q4}"></td>
+                <td th:text="${testResult.q5}"></td>
+                <td th:text="${testResult.result}"></td>
+            </tr>
+        </div>
+    </table>
+
+
 </div>
 </BODY>
 </HTML>

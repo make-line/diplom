@@ -166,12 +166,6 @@ a[href*='tel'] {
 
 /*
 *
-* Blocks
-*/
-
-
-/*
-*
 * Boxes
 */
 
@@ -1763,7 +1757,7 @@ html:not(.lt-ie10) .not-animated {
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
-	height: 100vh;
+	height: 91vh;
 	width: 100%;
 	z-index: 1;
 }

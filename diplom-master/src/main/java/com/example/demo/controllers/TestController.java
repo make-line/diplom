@@ -27,8 +27,12 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(Model model) {
-        model.addAttribute("testResult",new TestResult());
-        return "test";
+        if(userService.findUser(userService.getCurrentUsername()).getTestResult()==null) {
+            model.addAttribute("testResult", new TestResult());
+            return "test";
+        }
+        else
+            return "redirect:/info";
     }
     @PostMapping("/test")
     public String test(TestResult testResult, Model model){

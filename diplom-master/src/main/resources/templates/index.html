@@ -50,8 +50,8 @@
     <div class="page">
       <div id="home">
         <div class="topnav">
-          <a class="active" href="/test">Пройти тест</a>
-          <a class="active2" href="/info">Войти в личный кабинет</a>
+          <a class="active" th:if="${not st}" href="/registration">Пройти тест</a>
+          <a class="active2" th:if="${st}" href="/info">Войти в личный кабинет</a>
           <a href="#services" >Основные специализации</a>
           <a href="#projects">Основные дисциплины</a>
           <a href="#team">Наши преподаватели</a>
@@ -60,21 +60,21 @@
         <!-- Swiper-->
         <section class="section swiper-container swiper-slider swiper-slider-classic" data-loop="true" data-autoplay="4859" data-simulate-touch="true" data-direction="vertical" data-nav="false">
           <div class="swiper-wrapper text-center">
-            <div class="swiper-slide" data-slide-bg="../static/images/main1.jpg">
+            <div class="swiper-slide" th:data-slide-bg="@{/images/main1.jpg}" >
               <div class="swiper-slide-caption section-md">
                 <div class="container">
                   <h1 data-caption-animate="fadeInLeft" data-caption-delay="0"> <span style="color: blue;"> <b>{</b> </span> <span style="color:yellow;"><b>Сетевое</b></span> и <span style="color:yellow;"><b>системное</b></span> администрирование; <span style="color: blue;"> <b>}</b> </span> </h1>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide" data-slide-bg="../static/images/main2.jpg">
+            <div class="swiper-slide" th:data-slide-bg="@{/images/main2.jpg}">
               <div class="swiper-slide-caption section-md">
                 <div class="container">
                   <h1 data-caption-animate="fadeInLeft" data-caption-delay="0"> <span style="color: blue;"> <b>{</b> </span> <span style="color:yellow;"><b>Востребованная</b></span> специальность; <span style="color: blue;"> <b>}</b> </span> </h1>
                 </div>
               </div>
             </div>
-            <div class="swiper-slide" data-slide-bg="../static/images/main3.jpg">
+            <div class="swiper-slide" th:data-slide-bg="@{/images/main3.jpg}">
               <div class="swiper-slide-caption section-md">
                 <div class="container">
                   <h1 data-caption-animate="fadeInLeft" data-caption-delay="0"> <span style="color: blue;"> <b>{</b> </span> <span style="color:yellow;"><b>Интересное</b></span> обучение; <span style="color: blue;"> <b>}</b> </span> </h1>
@@ -96,7 +96,7 @@
         <div class="container">
           <div class="content-content"><h2 style="color: black;"> <span style="color: blue;"> <b>{</b> </span> Основные специализации; <span style="color: blue;"> <b>}</b> </span> </h2></div>
           <div class="row row-30 justify-content-center">
-            <div class="col-md-7 col-lg-5 col-xl-6 text-lg-left wow fadeInUp"><img src="../static/images/body1.jpg" alt="" width="415" height="592"/>
+            <div class="col-md-7 col-lg-5 col-xl-6 text-lg-left wow fadeInUp"><img src="../static/images/body1.jpg" th:src="@{/images/body1.jpg}" alt="" width="415" height="592"/>
             </div>
             <div class="col-lg-7 col-xl-6">
               <div class="row row-30">
@@ -132,7 +132,7 @@
 
       <!-- Cta-->
       <section class="section section-fluid bg-default">
-        <div class="parallax-container" data-parallax-img="../static/images/body2.jpg">
+        <div class="parallax-container" th:data-parallax-img="@{/images/body2.jpg}">
           <div class="parallax-content section-xl context-dark bg-overlay-68 bg-mobile-overlay">
             <div class="container">
               <div class="row row-30 justify-content-end text-right">
@@ -154,7 +154,7 @@
           <div class="isotope-filters isotope-filters-horizontal">
 
             <ul class="isotope-filters-list" id="isotope-3">
-              <li><a class="active" href="#" data-isotope-filter="*" data-isotope-group="gallery">Обязательные предметы</a></li>
+              <li ><a class="active" href="#" data-isotope-filter="*" data-isotope-group="gallery">Обязательные предметы</a></li>
               <li><a href="#" data-isotope-filter="Type 1" data-isotope-group="gallery">2 курс</a></li>
               <li><a href="#" data-isotope-filter="Type 2" data-isotope-group="gallery">3 курс</a></li>
               <li><a href="#" data-isotope-filter="Type 3" data-isotope-group="gallery">4 курс</a></li>
@@ -165,7 +165,7 @@
             <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight" data-filter="Type 1">
               <!-- Thumbnail Classic-->
               <article class="thumbnail thumbnail-classic thumbnail-md">
-                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-1-420x350.jpg" alt="" width="420" height="350"/>
+                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-1-420x350.jpg" th:src="@{/images/fullwidth-gallery-1-420x350.jpg}" alt="" width="420" height="350"/>
                 </div>
                 <div class="thumbnail-classic-caption">
                   <div class="thumbnail-classic-title-wrap">
@@ -178,7 +178,7 @@
             <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight" data-filter="Type 1, Type 2, Type 3" data-wow-delay=".1s">
               <!-- Thumbnail Classic-->
               <article class="thumbnail thumbnail-classic thumbnail-md">
-                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-2-420x350.jpg" alt="" width="420" height="350"/>
+                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-2-420x350.jpg" th:src="@{/images/fullwidth-gallery-2-420x350.jpg}" alt="" width="420" height="350"/>
                 </div>
                 <div class="thumbnail-classic-caption">
                   <div class="thumbnail-classic-title-wrap">
@@ -191,7 +191,7 @@
             <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight" data-filter="Type 2, Type 3" data-wow-delay=".2s">
               <!-- Thumbnail Classic-->
               <article class="thumbnail thumbnail-classic thumbnail-md">
-                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-3-420x350.jpg" alt="" width="420" height="350"/>
+                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-3-420x350.jpg" th:src="@{/images/fullwidth-gallery-3-420x350.jpg}" alt="" width="420" height="350"/>
                 </div>
                 <div class="thumbnail-classic-caption">
                   <div class="thumbnail-classic-title-wrap">
@@ -204,7 +204,7 @@
             <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight" data-filter="Type 1, Type 3" data-wow-delay=".3s">
               <!-- Thumbnail Classic-->
               <article class="thumbnail thumbnail-classic thumbnail-md">
-                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-4-420x350.jpg" alt="" width="420" height="350"/>
+                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-4-420x350.jpg" th:src="@{/images/fullwidth-gallery-4-420x350.jpg}" alt="" width="420" height="350"/>
                 </div>
                 <div class="thumbnail-classic-caption">
                   <div class="thumbnail-classic-title-wrap">
@@ -217,7 +217,7 @@
             <div class="col-sm-6 col-lg-4 col-xxl-3 isotope-item wow fadeInRight" data-filter="Type 3, Type 4" data-wow-delay=".3s">
               <!-- Thumbnail Classic-->
               <article class="thumbnail thumbnail-classic thumbnail-md">
-                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-5-420x350.jpg" alt="" width="420" height="350"/>
+                <div class="thumbnail-classic-figure"><img src="../static/images/fullwidth-gallery-5-420x350.jpg" th:src="@{/images/fullwidth-gallery-5-420x350.jpg}" alt="" width="420" height="350"/>
                 </div>
                 <div class="thumbnail-classic-caption">
                   <div class="thumbnail-classic-title-wrap">
@@ -236,7 +236,7 @@
         <div class="container">
           <div class="row row-30 row-xl-24 justify-content-center align-items-center align-items-lg-start text-left">
             <div class="col-md-6 col-lg-5 col-xl-4 text-center"><a class="text-img" href="#">
-                <div id="particles-js"></div><span class="counter">80</span></a></div>
+                <span class="counter">80</span></a></div>
             <div class="col-sm-8 col-md-6 col-lg-5 col-xl-4">
               <div class="text-width-extra-small offset-top-lg-24 wow fadeInUp">
                 <h3 class="title-decoration-lines-left"><span style="color: black;">Бюджетных мест</span></h3>
@@ -277,10 +277,10 @@
             </div>
             <div class="col-lg-6 col-xl-12 align-self-center">
               <div class="row row-30 justify-content-center">
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft"><img src="../static/images/workplace1.jpg" alt="" width="270" height="117"/></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".1s"><img src="../static/images/workplace2.jpg" alt="" width="270" height="117"/></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".2s"><img src="../static/images/workplace3.jpg" alt="" width="270" height="117"/></div>
-                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".3s"><img src="../static/images/workplace4.png" alt="" width="270" height="117"/></div>
+                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft"><img src="../static/images/workplace1.jpg"  th:src="@{/images/workplace1.jpg}"alt="" width="270" height="117"/></div>
+                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".1s"><img src="../static/images/workplace2.jpg" th:src="@{/images/workplace2.jpg}" alt="" width="270" height="117"/></div>
+                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".2s"><img src="../static/images/workplace3.jpg" th:src="@{/images/workplace3.jpg}" alt="" width="270" height="117"/></div>
+                <div class="col-sm-6 col-md-5 col-lg-6 col-xl-3 wow fadeInLeft" data-wow-delay=".3s"><img src="../static/images/workplace4.png" th:src="@{/images/workplace4.png}" alt="" width="270" height="117"/></div>
               </div>
             </div>
           </div>
@@ -294,7 +294,7 @@
           <div class="row row-sm row-30 justify-content-center">
             <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight">
               <!-- Team Classic-->
-              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-11-420x424.jpg" alt="" width="420" height="424"/></a>
+              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-11-420x424.jpg" th:src="@{/images/team-11-420x424.jpg}" alt="" width="420" height="424"/></a>
                 <div class="team-classic-caption">
                   <h4 class="team-classic-name">Илон Маск</h4>
                   <p class="team-classic-status">Лаборант</p>
@@ -303,7 +303,7 @@
             </div>
             <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
               <!-- Team Classic-->
-              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-12-420x424.jpg" alt="" width="420" height="424"/></a>
+              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-12-420x424.jpg"  th:src="@{/images/team-12-420x424.jpg}" alt="" width="420" height="424"/></a>
                 <div class="team-classic-caption">
                   <h4 class="team-classic-name">Сашка Глускер</h4>
                   <p class="team-classic-status">Мастер всего</p>
@@ -312,7 +312,7 @@
             </div>
             <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight" data-wow-delay=".2s">
               <!-- Team Classic-->
-              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-13-420x424.jpg" alt="" width="420" height="424"/></a>
+              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-13-420x424.jpg"  th:src="@{/images/team-13-420x424.jpg}" alt="" width="420" height="424"/></a>
                 <div class="team-classic-caption">
                   <h4 class="team-classic-name">Билл Гейтс</h4>
                   <p class="team-classic-status">Младший преподаватель</p>
@@ -321,9 +321,9 @@
             </div>
             <div class="col-md-6 col-lg-5 col-xl-3 wow fadeInRight" data-wow-delay=".3s">
               <!-- Team Classic-->
-              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-14-420x424.jpg" alt="" width="420" height="424"/></a>
+              <article class="team-classic team-classic-lg"><a class="team-classic-figure" href="#"><img src="../static/images/team-14-420x424.jpg" th:src="@{/images/team-14-420x424.jpg}" alt="" width="420" height="424"/></a>
                 <div class="team-classic-caption">
-                  <h4 class="team-classic-name">Светлана Кузя</h4>
+                  <h4 class="team-classic-name">Стив Возняк</h4>
                   <p class="team-classic-status">Доктор наук</p>
                 </div>
               </article>
@@ -391,6 +391,8 @@
                 </div>
                 <div class="col-sm-6 col-md-4 text-md-right"><span>All rights reserved.</span> <span>Design&nbsp;by&nbsp;<a href="https://github.com/make-line"></a>Kittya</a></span>
                 </div>
+                <br>
+              <div class="col-sm-6 col-md-4 text-md-left"> <span><a href="/info">Войти в аккаунт</a></span>
               </div>
             </div>
           </div>
@@ -398,7 +400,7 @@
       </footer>
     </div>
     <!-- Javascript-->
-    <script src="../static/js/core.min.js"></script>
-    <script src="../static/js/script.js"></script>
+    <script src="../static/js/core.min.js"  th:src="@{/js/core.min.js}" ></script>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
   </body>
 </html>

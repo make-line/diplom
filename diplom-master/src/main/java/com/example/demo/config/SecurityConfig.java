@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/logout", "/registration/**", "/js/**","/css/**","/fonts/**","/images/**","/sass/**")
                 .permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/test",false)
+                .and().formLogin().defaultSuccessUrl("/test")
                 .and().logout().
                 logoutSuccessUrl("/home")
                 .invalidateHttpSession(true)

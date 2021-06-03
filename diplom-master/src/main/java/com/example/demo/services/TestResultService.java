@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Access;
+import java.util.List;
+
 @Service
 @Component
 @Transactional
@@ -16,5 +18,8 @@ public class TestResultService {
     TestRepo testRepo;
     public void addTest(TestResult testResult){
         testRepo.save(testResult);
+    }
+    public List<TestResult> findAll(){
+        return testRepo.findAll();
     }
 }
