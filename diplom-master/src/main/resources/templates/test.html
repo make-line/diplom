@@ -1,0 +1,114 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple Multiple Choice Quiz with JavaScript</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+        *, *:before, *:after {margin: 0; padding: 0; box-sizing: border-box;}
+        body {background: #3865b8; color: #B9B5C7; font: 14px 'Open Sans', sans-serif;}
+
+        .top { padding-right: 20px; background: #261F41; text-align: right; }
+        a { color: rgba(255,255,255,0.6); text-transform: uppercase; text-decoration: none; line-height: 42px; }
+
+        h1 {padding: 50px 0; font-weight: 400; text-align: center;}
+
+        .main {margin: 0 auto; max-width: 500px;}
+        .main .quizsection {margin-bottom: 20px;}
+    </style>
+
+</head>
+
+<body>
+
+<h1>Тест</h1>
+
+<section class="main">
+
+    <form name="quiz" action="" class="quizform" method="post" th:object="${testResult}">
+
+        <div class="quizsection">
+
+
+            <h2>Нравится ли вам работа с техникой?</h2>
+
+            <div class="answer">
+                <input name="q1" value=1 id="q1" type="radio" checked="checked" th:field="*{q1}" /> Да
+            </div>
+
+            <div class="answer">
+                <input name="q1" value=0 id="q2" type="radio" th:field="*{q1}"/> Нет
+            </div>
+
+        </div>
+
+        <div class="quizsection">
+
+
+            <h2>Разбираетесь ли вы в строении этой техники?</h2>
+
+            <div class="answer">
+                <input name="q2" value=1 id="value1" type="radio" checked="checked" th:field="*{q2}" /> Да
+            </div>
+
+            <div class="answer">
+                <input name="q2" value=0 id="value2" type="radio" th:field="*{q2}" /> Нет
+            </div>
+
+        </div>
+
+        <div class="quizsection">
+
+
+            <h2>Знаете ли вы об операционных системах помимо виндовса?</h2>
+
+            <div class="answer">
+                <input name="q3" value=1 id="q3" type="radio" checked="checked" th:field="*{q3}"/> Да
+            </div>
+
+            <div class="answer">
+                <input name="q3" value=0 id="q3" type="radio" th:field="*{q3}" /> Нет
+            </div>
+
+        </div>
+
+        <div class="quizsection">
+
+
+            <h2>Знаете ли вы что такое bash, PowerShell и умеете ли вы в них работать?</h2>
+
+            <div class="answer">
+                <input name="q4" value=1 id="q4" type="radio" checked="checked" th:field="*{q4}"/> Да
+            </div>
+
+            <div class="answer">
+                <input name="q4" value=0 id="q4" type="radio" th:field="*{q4}"/> Нет
+            </div>
+
+        </div>
+        
+        <div class="quizsection">
+
+
+            <h2>Знаете ли вы какой-нибудь язык программирования не считая Паскаль?</h2>
+
+            <div class="answer">
+                <input name="q5" value=1 id="q5" type="radio" checked="checked" th:field="*{q5}"/> Да
+            </div>
+
+            <div class="answer">
+                <input name="q5" value=0 id="q5" type="radio" th:field="*{q5}" /> Нет
+            </div>
+
+        </div>
+        <input value="Submit" type="submit" /> <input value="Reset" type="reset" />
+
+    </form>
+
+</section>
+
+</body>
+</html>
