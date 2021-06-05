@@ -59,12 +59,10 @@
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.login}"></td>
                 <td th:if="${user.testResult != null}" th:text="${user.testResult.result}"></td>
-<!--                <td>-->
-<!--&lt;!&ndash;                    <form action="${pageContext.request.contextPath}/admin" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="hidden" name="userId" value="${user.id}"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="hidden" name="action" value="delete"/>&ndash;&gt;-->
-<!--                    <a type="submit"  th:if="${user.login != 'admin@admin.com'}" th:href="@{/adminpage/del/{id}(id=${user.getId()})}"><button>Delete</button></a>-->
-<!--                </td>-->
+                <td th:if="${user.testResult == null}" th:text="нет"></td>
+                <td>
+                    <a type="submit"  th:if="${user.login != 'admin@admin.com'}" th:href="@{/adminpage/user/del/{id}(id=${user.getId()})}"><button>Delete</button></a>
+                </td>
             </tr>
         </div>
     </table>
@@ -79,6 +77,11 @@
         <th>Вопрос 3</th>
         <th>Вопрос 4</th>
         <th>Вопрос 5</th>
+        <th>Вопрос 6</th>
+        <th>Вопрос 7</th>
+        <th>Вопрос 8</th>
+        <th>Вопрос 9</th>
+        <th>Вопрос 10</th>
         <th>Результат</th>
         </thead>
         <div th:each="testResult : ${testResult}">
@@ -90,9 +93,33 @@
                 <td th:if="${testResult.q3 != null  && testResult != null}" th:text="${testResult.q3}"></td>
                 <td th:if="${testResult.q4 != null  && testResult != null}" th:text="${testResult.q4}"></td>
                 <td th:if="${testResult.q5 != null  && testResult != null}" th:text="${testResult.q5}"></td>
+                <td th:if="${testResult.q1 != null  && testResult != null}" th:text="${testResult.q6}"></td>
+                <td th:if="${testResult.q2 != null  && testResult != null}" th:text="${testResult.q7}"></td>
+                <td th:if="${testResult.q3 != null  && testResult != null}" th:text="${testResult.q8}"></td>
+                <td th:if="${testResult.q4 != null  && testResult != null}" th:text="${testResult.q9}"></td>
+                <td th:if="${testResult.q5 != null  && testResult != null}" th:text="${testResult.q10}"></td>
                 <td th:if="${testResult.result != null  && testResult != null}" th:text="${testResult.result}"></td>
             </tr>
         </div>
+    </table>
+    <h2>Сообщения боту</h2>
+    <table border="1" bordercolor=black>
+        <thead>
+        <th>ID</th>
+        <th>email</th>
+        <th>сообщение</th>
+        </thead>
+    <div th:each="bot : ${bot}">
+
+        <tr>
+            <td  th:text="${bot.id}"></td>
+            <td  th:text="${bot.login}"></td>
+            <td  th:text="${bot.message}"></td>
+            <td>
+                <a type="submit" th:href="@{/adminpage/bot/del/{id}(id=${bot.getId()})}"><button>Вопрос решен</button></a>
+            </td>
+        </tr>
+    </div>
     </table>
 </div>
 </body>

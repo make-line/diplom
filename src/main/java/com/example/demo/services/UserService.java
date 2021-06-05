@@ -3,6 +3,7 @@ import com.example.demo.models.SignUpRequest;
 import com.example.demo.models.TestResult;
 import com.example.demo.models.User;
 import com.example.demo.models.UserDTO;
+import com.example.demo.repo.TestRepo;
 import com.example.demo.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -28,6 +29,8 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    TestRepo testRepo;
     public void registerUser(UserDTO userDTO){
 
     }
@@ -48,12 +51,13 @@ public class UserService implements UserDetailsService {
     public  List <User> findAll(){
         return userRepo.findAll();
     }
-//    public void delUser(long id){
-////        subscribeRepo.deleteSubscribeById(userRepo.findById(id).get().getId());
-////        System.out.println((userRepo.findById(id).get().getId()));
-//        userRepo.findById(id).setSubscribe(null);
-//        userRepo.deleteById((id));
-//    }
+    public void delUser(long id){
+//        if(userRepo.findById(id).getId()!=null) {
+//            testRepo.deleteById(userRepo.findById(id).getId());
+//        }
+//        userRepo.findById(id).setTestResult(null);
+        userRepo.deleteById((id));
+    }
 
     public User findUser(String name) {
         return userRepo.findByLogin(name);

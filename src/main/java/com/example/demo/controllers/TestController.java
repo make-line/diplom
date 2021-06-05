@@ -37,7 +37,7 @@ public class TestController {
     @PostMapping("/test")
     public String test(TestResult testResult, Model model){
         model.addAttribute("testResult", testResult );
-        testResult.setResult(testResult.getQ1()+testResult.getQ2()+testResult.getQ3()+testResult.getQ4()+testResult.getQ5());
+        testResult.setResult(testResult.getQ1()+testResult.getQ2()+testResult.getQ3()+testResult.getQ4()+testResult.getQ5()+testResult.getQ6()+testResult.getQ7()+testResult.getQ8()+testResult.getQ9()+testResult.getQ10());
         testResult.setUser(userService.findUser(userService.getCurrentUsername()));
         System.out.println(testResult.toString());
         testResultService.addTest(testResult);

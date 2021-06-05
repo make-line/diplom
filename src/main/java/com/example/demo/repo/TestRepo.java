@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TestRepo extends JpaRepository<TestResult, Long> {
 //    TestResult findByLogin(String login);
 //    TestResult findById(long id);
+    void deleteById(Long id);
 
 }

@@ -27,6 +27,16 @@ public class TestResult implements Serializable {
     int q4;
     @Column(name="q5")
     int q5;
+    @Column(name="q6")
+    int q6;
+    @Column(name="q7")
+    int q7;
+    @Column(name="q8")
+    int q8;
+    @Column(name="q9")
+    int q9;
+    @Column(name="q10")
+    int q10;
     @Column(name="result")
     int result;
     @OneToOne

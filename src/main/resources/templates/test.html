@@ -89,7 +89,7 @@
             </div>
 
         </div>
-        
+
         <div class="quizsection">
 
 
@@ -102,7 +102,80 @@
             <div class="answer">
                 <input name="q5" value=0 id="q5" type="radio" th:field="*{q5}" /> Нет
             </div>
+            <div class="quizsection">
 
+
+                <h2>Нравится ли вам работа с техникой?</h2>
+
+                <div class="answer">
+                    <input name="q6" value=1 id="q1" type="radio" checked="checked" th:field="*{q6}" /> Да
+                </div>
+
+                <div class="answer">
+                    <input name="q6" value=0 id="q2" type="radio" th:field="*{q6}"/> Нет
+                </div>
+
+            </div>
+
+            <div class="quizsection">
+
+
+                <h2>Разбираетесь ли вы в строении этой техники?</h2>
+
+                <div class="answer">
+                    <input name="q2" value=1 id="value1" type="radio" checked="checked" th:field="*{q7}" /> Да
+                </div>
+
+                <div class="answer">
+                    <input name="q2" value=0 id="value2" type="radio" th:field="*{q7}" /> Нет
+                </div>
+
+            </div>
+
+            <div class="quizsection">
+
+
+                <h2>Знаете ли вы об операционных системах помимо виндовса?</h2>
+
+                <div class="answer">
+                    <input name="q3" value=1 id="q3" type="radio" checked="checked" th:field="*{q8}"/> Да
+                </div>
+
+                <div class="answer">
+                    <input name="q3" value=0 id="q3" type="radio" th:field="*{q8}" /> Нет
+                </div>
+
+            </div>
+
+            <div class="quizsection">
+
+
+                <h2>Знаете ли вы что такое bash, PowerShell и умеете ли вы в них работать?</h2>
+
+                <div class="answer">
+                    <input name="q4" value=1 id="q4" type="radio" checked="checked" th:field="*{q9}"/> Да
+                </div>
+
+                <div class="answer">
+                    <input name="q4" value=0 id="q4" type="radio" th:field="*{q9}"/> Нет
+                </div>
+
+            </div>
+
+            <div class="quizsection">
+
+
+                <h2>Знаете ли вы какой-нибудь язык программирования не считая Паскаль?</h2>
+
+                <div class="answer">
+                    <input name="q5" value=1 id="q5" type="radio" checked="checked" th:field="*{q10}"/> Да
+                </div>
+
+                <div class="answer">
+                    <input name="q5" value=0 id="q5" type="radio" th:field="*{q10}" /> Нет
+                </div>
+
+        </div>
         </div>
         <input value="Submit" type="submit" /> <input value="Reset" type="reset" />
 
